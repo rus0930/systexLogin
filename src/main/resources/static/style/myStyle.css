@@ -1,0 +1,13 @@
+@charset "UTF-8";
+table{
+	text-align: center;
+	margin: auto;
+}
+
+.red{
+	background-color: #ff8080;
+}
+
+div{
+	text-align: center;
+}

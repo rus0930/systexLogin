@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Welcome</title>
+<link rel="stylesheet" th:href="@{static/style/myStyle.css}">
+</head>
+<body>
+	<form action="sign" method="POST">
+		<table>
+			<tr>
+				<td>Account</td>
+				<td><input name='acc' type='text' th:value="${loginInfo?.acc}" required ></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input name='pas' type="password" th:value="${loginInfo?.pas}" required></td>
+			</tr>
+			<tr>
+				<td><input type='reset' value='clean'></td>
+				<td><input type='submit' value='login'></td>
+			</tr>
+			<tr>
+				<td colspan="2" th:attr="class=${loginInfo==null?_:'red'}" th:text="${loginInfo==null?'&nbsp;':'帳號或密碼錯誤'}">
+				
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

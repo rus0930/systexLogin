@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello User</title>
+<link rel="stylesheet" th:href="@{static/style/myStyle.css}">
+</head>
+<body>
+	
+	<div>dispatcher Info<h2 th:text="${'歡迎回來'+userInfo?.name+'('+userInfo?.acc+')'}"></h2></div>
+	<div>session Info<h2 th:text="${'歡迎回來'+session.userInfo.getName()+'('+session.userInfo.getAcc()+')'}"></h2></div>
+	<div><a href="/logout">log out</a></div>
+</body>
+</html>
