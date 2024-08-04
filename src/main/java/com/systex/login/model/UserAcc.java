@@ -33,5 +33,11 @@ public class UserAcc {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public static UserAcc info(String name,String acc) {
+		final UserAcc user =new UserAcc();
+		user.setAcc(acc);
+		user.setName(name);
+		return user;
+	}
 	
 }

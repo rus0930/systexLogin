@@ -1,31 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8" />
 <title>Welcome</title>
 <link rel="stylesheet" th:href="@{static/style/myStyle.css}">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+	integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+	integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+	crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{static/script/login.js}"></script>
+
+
 </head>
-<body>
-	<form action="sign" method="POST">
-		<table>
-			<tr>
-				<td>Account</td>
-				<td><input name='acc' type='text' th:value="${loginInfo?.acc}" required ></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><input name='pas' type="password" th:value="${loginInfo?.pas}" required></td>
-			</tr>
-			<tr>
-				<td><input type='reset' value='clean'></td>
-				<td><input type='submit' value='login'></td>
-			</tr>
-			<tr>
-				<td colspan="2" th:attr="class=${loginInfo==null?_:'red'}" th:text="${loginInfo==null?'&nbsp;':'帳號或密碼錯誤'}">
-				
-				</td>
-			</tr>
-		</table>
+<body class='bg-body-tertiary'>
+<div id='outTontainer'>
+<div id='container'>
+	<form action="/login" method="POST" name="user">
+	<img class="mb-4" src="https://tw.systex.com/wp-content/uploads/sites/2/2016/04/logo-zn-275x30.png" alt="Stystex icon" height="30">
+		<h1 class="h3 mb-3 fw-normal">sign in</h1>
+		<div class="form-floating mb-3">
+			<input type="text" name='acc' th:value="${loginInfo?.acc}"
+				class="form-control" id="floatingInput" placeholder="Account" required> 
+				<label for="floatingInput">Account</label>
+		</div>
+		<div class="form-floating">
+			<input type="password" name='pas' th:value="${loginInfo?.pas}"
+				class="form-control" id="floatingPassword" placeholder="Password"
+				required> <label for="floatingPassword">Password</label>
+
+		</div>
+
+		<input class="btn btn-primary mb-3 m-2" type='reset' value='clean'>&nbsp;
+		<input class="btn btn-primary mb-3 m-2" type='submit' value='表單login'>&nbsp;
+		<input class="btn btn-primary mb-3 m-2" type="button" value="ajax登入" onclick="login()"> 
+		<span ></span>
 	</form>
+	
+	<div id='status' th:attr="class=${loginInfo==null?_:'red'}"
+			th:text="${loginInfo==null?'&nbsp;':'帳號或密碼錯誤'}"></div>
+	</div>
+	</div>
 </body>
 </html>
