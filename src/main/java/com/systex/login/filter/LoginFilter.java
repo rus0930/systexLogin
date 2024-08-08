@@ -14,7 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.systex.login.model.UserAcc;
-import com.systex.service.LoginService;
+import com.systex.login.service.LoginService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Component
-@Order(2)
+@Order(1)
 public class LoginFilter extends OncePerRequestFilter {
 
 	@Autowired

@@ -1,6 +1,6 @@
 /*const login = () => {
-	const myHeaders = new Headers();
-	myHeaders.append("Content-Type", "application/json");
+	const myHeaders = new Headers()
+	myHeaders.append("Content-Type", "application/json")
 	fetch("/api/login", {
 		method: "POST",
 		body: JSON.stringify({
@@ -21,6 +21,8 @@
 }*/
 
 const login = () => {
+	const status1=$("#status1")
+
 	$.ajax({
 		url: "/api/login",
 		type: "POST",
@@ -30,19 +32,59 @@ const login = () => {
 			pas: $("input[name='pas']").val()
 		}),
 		success: function(data, textStatus, jqXHR) {
-			let i = 3;
-			for (let j = 0; j < 3; j++) {
+			status1.removeClass("bg-danger text-white")
+			status1.addClass("text-success")
+			for (let j = 0 ;j < 3 ;j++) {
 				setTimeout(() => {
-					$("#status").text(`登入成功 ${i--}秒後跳轉至首頁`);
+					status1.text(`登入成功 ${3-j}秒後跳轉至首頁`)
 				}, j * 1000)
 			}
 			setTimeout(() => {
-				window.location.replace("/home");
+				window.location.replace("/home")
 			}, 3000)
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			$("#status").text(jqXHR.status === 401 ? "帳號或密碼錯誤" : "server error or internet");
+			status1.text(jqXHR.status === 401 ? "帳號或密碼錯誤" : "server error or internet")
+			status1.addClass("bg-danger text-white")
 		}
-	});
-};
+	})
+}
+
+const signUp=() => {
+	const status2=$("#status2")
+
+	$.ajax({
+		url: "/api/signUp",
+		type: "POST",
+		contentType: "application/json",
+		data: JSON.stringify({
+			acc: $("#account").val(),
+			pas: $("#password").val(),
+			name:$("#nickname").val()
+		}),
+		success: function(data, textStatus, jqXHR) {
+			status2.removeClass("bg-danger")
+			status2.addClass("bg-success")
+			status2.text(data?.message ?? "新增帳號成功")
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			status2.text(jqXHR.status === 500 ? "server error or internet" : jqXHR?.responseJSON?.message ?? "未知錯誤")
+			status2.removeClass("bg-success")
+			status2.addClass("bg-danger")
+		}
+	})
+}
+
+const switchView=()=>{
+	const status1=$("#status1")
+	const status2=$("#status2")
+	
+	$("#login").toggleClass("visually-hidden")
+	$("#signUp").toggleClass("visually-hidden")
+	status1.removeClass("bg-danger")
+	status2.removeClass("bg-danger bg-success")
+	status1.text(".")
+	status2.text(".")
+}
+
 

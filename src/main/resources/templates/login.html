@@ -25,32 +25,98 @@
 
 </head>
 <body class='bg-body-tertiary'>
-<div id='outTontainer'>
-<div id='container'>
-	<form action="/login" method="POST" name="user">
-	<img class="mb-4" src="https://tw.systex.com/wp-content/uploads/sites/2/2016/04/logo-zn-275x30.png" alt="Stystex icon" height="30">
-		<h1 class="h3 mb-3 fw-normal">sign in</h1>
-		<div class="form-floating mb-3">
-			<input type="text" name='acc' th:value="${loginInfo?.acc}"
-				class="form-control" id="floatingInput" placeholder="Account" required> 
-				<label for="floatingInput">Account</label>
-		</div>
-		<div class="form-floating">
-			<input type="password" name='pas' th:value="${loginInfo?.pas}"
-				class="form-control" id="floatingPassword" placeholder="Password"
-				required> <label for="floatingPassword">Password</label>
+	<div class='bg'></div>
+	<div id="outTontainer">
+		<!-- 登入帳號 -->
+		<div id="login" class="row w-100">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<div class="mainBg">
+					<form action="/login" method="POST" name="user">
+						<div class="imgC">
+							<a href="/"> <img class="my-5"
+								src="https://tw.systex.com/wp-content/uploads/sites/2/2016/04/logo-zn-275x30.png"
+								alt="Stystex icon" height="30"></a>
+						</div>
 
+						<h1 class="h3 m-3">sign in</h1>
+						<div class="form-floating m-2">
+							<input type="text" name='acc' th:value="${loginInfo?.acc}"
+								class="form-control" id="floatingInput" placeholder="Account"
+								required> <label for="floatingInput">Account</label>
+						</div>
+						<div class="form-floating m-2">
+							<input type="password" name='pas' th:value="${loginInfo?.pas}"
+								class="form-control" id="floatingPassword"
+								placeholder="Password" required> <label
+								for="floatingPassword">Password</label>
+						</div>
+						<div class="form-floating m-2 opacity-0">
+							<input type="text" class="form-control" placeholder="nickname"
+								disabled="disabled">
+						</div>
+						<div class="textC">
+							<div
+								th:class='${"border-0 rounded-pill text-center p-2 text-white w-75 "+(loginInfo==null?"":"bg-danger")}'
+								id='status1' th:text="${loginInfo==null?'&nbsp;':'帳號或密碼錯誤'}"></div>
+						</div>
+						<input class="btn btn-secondary mx-5 my-1" type='reset'
+							value='clear'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+							class="btn bg-success bg-opacity-75 text-white mx-2 my-1"
+							type='submit' value='表單login'> <input
+							class="btn bg-success bg-opacity-75 text-white mx-2 my-1"
+							type="button" value="ajax登入" onclick="login()"> <a
+							href="javascript:void(0)" onclick="switchView()"><span
+							class="switchSpan text-center d-block text-muted fw-bold my-3 mb-3">還沒有帳號?申請!</span></a>
+					</form>
+				</div>
+			</div>
+			<div class="col-4"></div>
 		</div>
+		<!-- 申請帳號 -->
+		<div id="signUp" class="row w-100 visually-hidden">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<div class="mainBg">
+					<form method="POST" name="user">
+						<div class="imgC">
+							<a href="/"> <img class="my-5"
+								src="https://tw.systex.com/wp-content/uploads/sites/2/2016/04/logo-zn-275x30.png"
+								alt="Stystex icon" height="30"></a>
+						</div>
+						<h1 class="h3 m-3">Apply</h1>
+						<div class="form-floating m-2">
+							<input type="text" class="form-control" id="account"
+								placeholder="Account" required> <label for="account">Account</label>
+						</div>
+						<div class="form-floating m-2">
+							<input type="password" class="form-control" id="password"
+								placeholder="Password" required> <label for="password">Password</label>
+						</div>
+						<div class="form-floating m-2">
+							<input type="text" class="form-control" id="nickname"
+								placeholder="nickname" required> <label for="nickname">Nickname</label>
+						</div>
+						<div class="textC">
+							<div
+								class="border-0 rounded-pill text-center p-2 text-white w-75"
+								id='status2'></div>
+						</div>
 
-		<input class="btn btn-primary mb-3 m-2" type='reset' value='clean'>&nbsp;
-		<input class="btn btn-primary mb-3 m-2" type='submit' value='表單login'>&nbsp;
-		<input class="btn btn-primary mb-3 m-2" type="button" value="ajax登入" onclick="login()"> 
-		<span ></span>
-	</form>
-	
-	<div id='status' th:attr="class=${loginInfo==null?_:'red'}"
-			th:text="${loginInfo==null?'&nbsp;':'帳號或密碼錯誤'}"></div>
-	</div>
+						<div class="row">
+							<input class="col btn btn-secondary mx-5 my-1" type='reset'
+								value='clear'>&nbsp; <input
+								class="col btn bg-success bg-opacity-75 text-white mx-5 my-1"
+								type="button" value="提交申請" onclick="signUp()">
+						</div>
+						<a href="javascript:void(0)" onclick="switchView()"><span
+							class="switchSpan text-center d-block text-muted fw-bold my-3 mb-3">有帳號了?登入!</span></a>
+
+					</form>
+				</div>
+			</div>
+			<div class="col-4"></div>
+		</div>
 	</div>
 </body>
 </html>
